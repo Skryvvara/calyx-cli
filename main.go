@@ -5,7 +5,7 @@ import (
 	"os"
 	"xdarkyne/calyx/pkg/actions"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func main() {
