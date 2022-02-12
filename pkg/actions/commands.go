@@ -1,20 +1,12 @@
 package actions
 
 import (
-	"log"
-	"os"
-
 	"github.com/urfave/cli"
 )
 
 // Commands is a list of CLI commands
-func Commands() {
-	app := &cli.App{
-		Name:  "calyx",
-		Usage: "say hello",
-	}
-
-	app.Commands = []cli.Command{
+func Commands() []cli.Command {
+	return []cli.Command{
 		{
 			Name:  "status",
 			Usage: "show the status of the cli",
@@ -32,10 +24,5 @@ func Commands() {
 				return nil
 			},
 		},
-	}
-
-	err := app.Run(os.Args)
-	if err != nil {
-		log.Fatal(err)
 	}
 }
