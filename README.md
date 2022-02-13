@@ -23,6 +23,5 @@ options: <br>
 example usage: `calyx generate --bytes 32` <br>
 output: `342b43a03a9f8aedb2a1f568e019249a6a1cf654e5dbaba9bf4410435a33eac5`
 
-### 
-
+<!-- VARIABLES -->
 [golang]: https://go.dev/
