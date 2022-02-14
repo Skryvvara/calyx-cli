@@ -40,6 +40,14 @@ func Commands() []*cli.Command {
 					},
 					Value: 32,
 				},
+				&cli.BoolFlag{
+					Name:  "copy",
+					Usage: "copy the output string to clipbard",
+					Aliases: []string{
+						"c",
+					},
+					Value: false,
+				},
 			},
 			Action: func(c *cli.Context) error {
 				err := Generate(c)

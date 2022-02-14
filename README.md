@@ -18,9 +18,10 @@ ouput: `darkyne`
 ### generate [options]
 options: <br>
 * --bytes value, -b value | set the amount of bytes (default: 32) <br>
+* --copy, -c | copy the output string to clipbard (default: false) <br>
 * --help, -h | show help (default: false) <br>
 > this command generates a key by giving it an amount of bytes as options. Defaults to 32 bytes.
-example usage: `calyx generate --bytes 32` <br>
+example usage: `calyx generate --copy --bytes 32` <br>
 output: `342b43a03a9f8aedb2a1f568e019249a6a1cf654e5dbaba9bf4410435a33eac5`
 
 <!-- VARIABLES -->
