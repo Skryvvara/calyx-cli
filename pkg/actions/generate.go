@@ -12,7 +12,6 @@ import (
 func Generate(c *cli.Context) error {
 	size := c.Int("bytes")
 	copy := c.Bool("copy")
-	fmt.Println(copy)
 	if size < 0 {
 		fmt.Println("Invalid amount of bytes, defaulting to 32.")
 		size = 32
