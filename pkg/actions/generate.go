@@ -9,7 +9,40 @@ import (
 	"golang.design/x/clipboard"
 )
 
-func Generate(c *cli.Context) error {
+func GenerateCommand() *cli.Command {
+	return &cli.Command{
+		Name:  "generate",
+		Usage: "generate things",
+		Aliases: []string{
+			"gen",
+			"g",
+		},
+		Flags: []cli.Flag{
+			&cli.IntFlag{
+				Name:  "bytes",
+				Usage: "set the amount of bytes",
+				Aliases: []string{
+					"b",
+				},
+				Value: 32,
+			},
+			&cli.BoolFlag{
+				Name:  "copy",
+				Usage: "copy the output string to clipbard",
+				Aliases: []string{
+					"c",
+				},
+				Value: false,
+			},
+		},
+		Action: func(c *cli.Context) error {
+			err := generateAction(c)
+			return err
+		},
+	}
+}
+
+func generateAction(c *cli.Context) error {
 	size := c.Int("bytes")
 	copy := c.Bool("copy")
 	if size < 0 {
