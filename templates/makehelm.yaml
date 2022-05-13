@@ -1,5 +1,6 @@
-name: makehelm
-file:
-  source_name: makefile
-  destination_name: makefile
-type: create
+actions:
+  - name: create makefile for helm charts
+    file:
+      source_name: makefile
+      destination_name: makefile
+    type: create

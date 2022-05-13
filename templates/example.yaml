@@ -1,0 +1,20 @@
+# list of actions
+actions:
+  # create a file
+  - name: create makehelm
+    file:
+      source_name: makefile
+      destination_name: makefile
+    type: create
+    # create another file
+  - name: create old makehelm
+    file:
+      source_name: makefile
+      destination_name: oldmakefile
+    type: create
+  # delete a file
+  - name: delete old makehelm
+    file:
+      source_name: oldmakefile
+      # Destination name can't be missing on type create
+    type: delete

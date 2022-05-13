@@ -1,8 +1,10 @@
 package commands
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"xdarkyne/calyx/templates"
 
 	"github.com/urfave/cli/v2"
@@ -41,7 +43,6 @@ func CreateCommand() *cli.Command {
 
 func createAction(c *cli.Context) {
 	script := c.String("file")
-	path := c.String("path")
 
 	str, err := templates.Tmpl.ReadFile(fmt.Sprintf("%s.yaml", script))
 	if err != nil {
@@ -55,20 +56,41 @@ func createAction(c *cli.Context) {
 		return
 	}
 
-	switch data.Type {
-	case "create":
-		str, err := templates.Tmpl.ReadFile(fmt.Sprintf("files/%s", data.File.SourceName))
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		if path == "" {
-			path = fmt.Sprintf("./%s", data.File.DestinationName)
-		}
-		err = ioutil.WriteFile(path, str, 0644)
-		if err != nil {
-			fmt.Println(err)
-			return
+	for _, action := range data.Actions {
+		fmt.Println(action.Name)
+		switch action.Type {
+		case "create":
+			str, err := templates.Tmpl.ReadFile(fmt.Sprintf("files/%s", action.File.SourceName))
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			path := c.String("path")
+			if path == "" {
+				path = fmt.Sprintf("./%s", action.File.DestinationName)
+			}
+			err = ioutil.WriteFile(path, str, 0644)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+		case "delete":
+			path := c.String("path")
+			if path == "" {
+				path = fmt.Sprintf("./%s", action.File.SourceName)
+			}
+			if _, err := os.Stat(path); err == nil {
+				// path/to/whatever exists
+				err = os.Remove(path)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+			} else if errors.Is(err, os.ErrNotExist) {
+				// path/to/whatever does *not* exist
+				fmt.Println(err)
+			}
 		}
 	}
+
 }

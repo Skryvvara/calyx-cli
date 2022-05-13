@@ -6,6 +6,10 @@ import "embed"
 var Tmpl embed.FS
 
 type Template struct {
+	Actions []Action `yaml:"actions"`
+}
+
+type Action struct {
 	Name string `yaml:"name"`
 	File File   `yaml:"file"`
 	Type string `yaml:"type"`
