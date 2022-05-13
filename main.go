@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"os"
-	"xdarkyne/calyx/pkg/actions"
+	"xdarkyne/calyx/commands"
 
 	"github.com/urfave/cli/v2"
 )
@@ -14,7 +14,7 @@ func main() {
 		Usage: "say hello",
 	}
 
-	app.Commands = actions.Commands()
+	app.Commands = commands.InitializeCommands()
 
 	err := app.Run(os.Args)
 	if err != nil {

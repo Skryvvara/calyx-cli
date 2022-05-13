@@ -1,4 +1,4 @@
-package actions
+package commands
 
 import (
 	"crypto/rand"
@@ -60,7 +60,7 @@ func generateAction(c *cli.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if copy == true {
+	if copy {
 		clipboard.Write(clipboard.FmtText, []byte(str))
 	}
 
