@@ -1,6 +1,5 @@
 <div align=center>
   <h1>Calyx-Cli</h1>
-  <p>a humble cli for me, darkyne.</p>
 </div>
 
 ## description
